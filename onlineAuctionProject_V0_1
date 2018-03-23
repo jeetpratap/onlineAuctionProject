@@ -1,0 +1,49 @@
+import java.util.*;
+
+public class onlineAuctionProject {
+    public static void main (String args[]) {
+        
+        /* declare and enter the various given entries*/
+        ArrayList<Integer> sb = new ArrayList<Integer>();
+        ArrayList<Integer> mb = new ArrayList<Integer>();
+        ArrayList<Integer> ai = new ArrayList<Integer>();
+        ArrayList<Integer> bid = new ArrayList<Integer>();
+        
+        sb.add(170);
+        sb.add(160);
+        sb.add(190);
+        
+        mb.add(240);
+        mb.add(243);
+        mb.add(240);
+        
+        ai.add(3);
+        ai.add(7);
+        ai.add(4);
+        
+        bid.add(170);
+        bid.add(160);
+        bid.add(190);
+        
+        System.out.println (sb.get(1));
+        System.out.println (mb);
+        System.out.println (ai);
+        System.out.println (bid);
+        
+        /* find maximum bid from bid array */
+        
+        int bidMax = Collections.max(bid);
+        System.out.println (bidMax);
+        
+        /* find next incremental bid amount */ 
+        for (int i1=0; i1<=bid.size()-1; i1++) {
+        /*for (int i1 : bid.size()){*/
+            if (bidMax != bid.get(i1)){
+            int newBidAmount = bid.get(i1) + (((bidMax-bid.get(i1))/ai.get(i1)+1)*ai.get(i1));
+            bid.remove(i1);
+            bid.add(i1,newBidAmount);
+            }
+        }
+        System.out.println(bid);
+    }
+}
