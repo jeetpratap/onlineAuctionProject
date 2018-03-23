@@ -1,0 +1,85 @@
+import java.util.*;
+
+public class onlineAuctionProject {
+
+    public static void main (String args[]) {
+        
+        /* declare and enter the various given entries*/
+        ArrayList<Integer> sb = new ArrayList<Integer>();
+        ArrayList<Integer> mb = new ArrayList<Integer>();
+        ArrayList<Integer> ai = new ArrayList<Integer>();
+        ArrayList<Integer> bid = new ArrayList<Integer>();
+        
+        sb.add(170);
+        sb.add(160);
+        sb.add(190);
+        
+        mb.add(240);
+        mb.add(243);
+        mb.add(240);
+        
+        ai.add(3);
+        ai.add(7);
+        ai.add(4);
+        
+        bid.add(170);
+        bid.add(160);
+        bid.add(190);
+        
+        System.out.println ("intial starting bids are : " +sb);
+        System.out.println ("intial maximum  bids are : " +mb);
+        System.out.println ("intial increm.  amts are : " +ai);
+        System.out.println ("intial starting bids are : " +bid);
+        
+        /*call nextRoundOfBidding method */
+        /*do {
+        
+            /*for (int i2=0; i2<=bid.size()-1; i2++)) {
+            bid.get(i2) = mb.get(i2); 
+            }*/
+        while (bid = mb) {
+            
+            int bidMaxMainClass  = nextRoundOfBidding (sb,mb,ai,bid);        
+        
+        }
+        /*}
+        while (bid != mb);*/
+    
+    }
+
+    static int nextRoundOfBidding (ArrayList sb, ArrayList mb, ArrayList ai, ArrayList bid) {
+        /* find maximum bid from bid array */
+        
+        int bidMax = (int)Collections.max(bid);
+        System.out.println ("---------------");
+        System.out.println ("bidMax : " +bidMax);
+        
+        /* find next incremental bid amount */ 
+        for (int i1=0; i1<=bid.size()-1; i1++) {
+        /*for (int i1 : bid.size()){*/
+            if (bidMax != (Integer)bid.get(i1)){
+            int newBidAmount = (Integer)bid.get(i1) + (((bidMax-(Integer)bid.get(i1))/(Integer)ai.get(i1)+1)*(Integer)ai.get(i1));
+                
+                /* Check that NewBidAmount does not exceed MaxBid Declared */
+                if (newBidAmount <= (Integer)mb.get(i1)) {
+                
+                    System.out.print("newBidAmount for " +i1);
+                    System.out.println (" is : " +newBidAmount);
+            
+                    bid.set(i1,newBidAmount);
+                }        
+                    else {
+                    bid.set(i1,mb.get(i1));
+                }
+            
+            }
+            /* check if newBidAmount is more than the max. bid limit */
+            if ((int)bid.get(i1) >= (int)mb.get(i1)) {
+                bid.set(i1,mb.get(i1));
+            }
+        }
+        System.out.println("next bid amounts are : " +bid);
+        return bidMax;
+    }
+    
+}
